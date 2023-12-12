@@ -95,7 +95,9 @@ class Sam(nn.Module):
                 to subsequent iterations of prediction.
         """
         input_images = torch.stack([self.preprocess(x["image"]) for x in batched_input], dim=0)
+        print(f"input_images.shape : {input_images.shape}")
         image_embeddings = self.image_encoder(input_images)
+        print(f"image_embeddings.shape : {image_embeddings.shape}")
 
         outputs = []
         for image_record, curr_embedding in zip(batched_input, image_embeddings):
